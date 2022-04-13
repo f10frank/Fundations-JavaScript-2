@@ -53,8 +53,20 @@ function crearClaseLibro() {
       // Suponiendo que el libro tiene estas traducciones: [{idioma: 'inglés', editorial: 'Scholastic'}, {idioma: 'castellano', editorial: 'Santillana'}]
       // libro.getAlcance() deberia devolver 2
       // Tu código aca:
+
+      let myArray = this.getTraducciones();
+      let myArrayUnique = [];
+      for(let i = 0; i < myArray.length; i++) {
+        if(!myArrayUnique.includes(myArray[i])){
+          myArrayUnique.push(myArray[i]);
+        }
+      }
+      return myArrayUnique.length;
+      /*
       let idiomas = new Set(this.getTraducciones()); // Set permite almacenar en un objeto con valores únicos
       return idiomas.size;
+      */
+
     }
   }
 
@@ -86,6 +98,7 @@ const printStaff = function (objeto) {
     myArray.push('The '+ element + ' is ' + objeto.staff[element].name); //concatet
   });
   return myArray;
+
 };
 
 module.exports = { crearClaseLibro, printStaff };
