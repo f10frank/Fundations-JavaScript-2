@@ -17,7 +17,28 @@ const { Stack, Queue } = require("../estructuras")
 
 function efectoEspejo(str){  
 //tu codigo aqui
+let myArray = str.split('');
+let theSize=myArray.length;
+let arrayWords = [];
 
+// In this bucle retire the last position and push in arrayWords
+for(let i=theSize; i>0; i--) {
+  let aux = myArray.pop();
+  arrayWords.push(aux);
+  }
+
+//Here pass to String whitout ","
+myString = arrayWords.toString().replace(/,/g,'');
+myArray=myString.split(' ');
+
+// Restart the variables and enter again in bucle Stack
+theSize=myArray.length;
+arrayWords = [];
+for(let i= 0; i < theSize; i++) {
+  let aux = myArray.pop();
+  arrayWords.push(aux);
+}
+return arrayWords.toString().replace(/,/g,' ');
 };
 
 
