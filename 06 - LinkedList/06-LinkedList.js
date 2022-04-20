@@ -2,7 +2,7 @@ const { LinkedList, Node } = require("../estructuras")
   //agregar el metodo size al prototipo de LinkedList.
   // Este metodo deberia retornar la cantidad de elementos de la lista
   LinkedList.prototype.size=function(){
-    
+    return this.len;
   }
 
 
@@ -14,7 +14,21 @@ const { LinkedList, Node } = require("../estructuras")
 // ACLARACIÓN: Se debe ordenar la lista original y no una nueva.
 LinkedList.prototype.orderList = function () {
     // Tu código aca:
-   
+    let myArray = [];
+    let current = this.head;
+
+    while(current) {  // Pass for each element the Linkedlist and push the value in new Array
+      myArray.push(current.value);
+      current = current.next;
+    }
+    myArray = myArray.sort(function(a, b){return b - a}); // Order the array of + to -
+
+    this.head = null; // Reset the Linkedlist
+    
+    for(let i = 0; i < myArray.length; i++) {// Complete the linkelist with the value array
+      this.add(myArray[i]);
+    }
+  
   };
 
 
@@ -26,7 +40,22 @@ LinkedList.prototype.orderList = function () {
     
 LinkedList.prototype.insert = function(data,pos) {
 	
+  let newNode = new Node(data);
+  let current = this.head;
+  let mySize = this.size();
+  let posActual = 0;
 
+  if(pos > mySize) return false;
+  while(current) {
+    if(pos == posActual) {
+      let temp = current.next;
+      current.next = newNode;
+      current.next.next = temp;
+      this.len++;
+    }
+    current = current.next;
+    posActual++;
+  }
 
 }
   
