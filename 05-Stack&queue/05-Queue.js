@@ -19,7 +19,18 @@ const { Queue } = require("../estructuras")
 
 var controlAcces = function(queue, event){
     // Tu código aca:
+    myArray = [];
+    myTicket = [];
     
+    while(queue.size() > 0) { 
+      let temp = queue.dequeue(); // storage the first elment and quit the queue
+      if(temp.age >= 18 && temp.ticket.event == event && !myTicket.includes(temp.ticket.number)) {
+        myArray.push(temp.fullname);
+        myTicket.push(temp.ticket.number)
+      }
+    }
+    return myArray;
+  
   };
       
   
